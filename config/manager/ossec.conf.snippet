@@ -1,0 +1,15 @@
+<!--
+  Manager-side global FIM settings (optional).
+  These live in the <syscheck> block of /var/ossec/etc/ossec.conf on the MANAGER.
+  Restart after editing: sudo systemctl restart wazuh-manager
+-->
+<syscheck>
+  <!-- Run a full scan every 12 hours -->
+  <frequency>43200</frequency>
+
+  <!-- Alert on new files, not just changes to existing ones -->
+  <alert_new_files>yes</alert_new_files>
+
+  <!-- Keep the content-diff feature on so modify alerts show before/after -->
+  <nodiff>/etc/ssl/private</nodiff>
+</syscheck>

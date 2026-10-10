@@ -1,0 +1,25 @@
+<!--
+  Optional custom brute-force rule for the lab.
+
+  Append the <group> below to /var/ossec/etc/rules/local_rules.xml on the MANAGER,
+  then: sudo systemctl restart wazuh-manager
+
+  It demonstrates authoring a tuned frequency rule on top of the shipped SSH
+  rules. Rule 5716 = sshd authentication failure. This child rule fires when the
+  SAME source address fails 5 times within 90 seconds, at level 12.
+
+  IDs 100000+ are the user-defined range and won't clash with Wazuh defaults.
+-->
+<group name="local,syslog,sshd,">
+
+  <rule id="100100" level="12" frequency="5" timeframe="90">
+    <if_matched_sid>5716</if_matched_sid>
+    <same_source_ip />
+    <description>Custom: SSH brute force — 5 failures in 90s from one source IP.</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>authentication_failures,pci_dss_11.4,</group>
+  </rule>
+
+</group>

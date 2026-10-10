@@ -1,0 +1,17 @@
+# Wazuh install artifacts — never commit these
+wazuh-install.sh
+wazuh-install-files.tar
+wazuh-passwords.txt
+*.pem
+*.key
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+
+# Keep the screenshots folder but not stray large files
+screenshots/*.mp4

@@ -1,0 +1,23 @@
+<!--
+  Agent-side FIM snippet.
+  Merge the <directories> line into the existing <syscheck> block in
+  /var/ossec/etc/ossec.conf on the AGENT, then: sudo systemctl restart wazuh-agent
+-->
+<syscheck>
+  <!-- Lab directory watched in near real time, with content diffs -->
+  <directories check_all="yes" realtime="yes" report_changes="yes">/root/fim-lab</directories>
+
+  <!-- Example production watches (uncomment to try):
+  <directories check_all="yes" realtime="yes">/etc</directories>
+  <directories check_all="yes" realtime="yes">/bin,/sbin</directories>
+  -->
+</syscheck>
+
+<!--
+  The default Ubuntu/Debian agent already tails the auth log for SSH events.
+  If yours doesn't, ensure this localfile block is present:
+-->
+<localfile>
+  <log_format>syslog</log_format>
+  <location>/var/log/auth.log</location>
+</localfile>
