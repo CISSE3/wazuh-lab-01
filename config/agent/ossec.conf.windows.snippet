@@ -1,0 +1,10 @@
+<!--
+  Windows agent FIM snippet (used in the 24 Oct 2026 run).
+  File: C:\Program Files (x86)\ossec-agent\ossec.conf  (edit from an elevated shell)
+  Add the <directories> line inside the existing <syscheck> block, then:
+      Restart-Service WazuhSvc
+  Replace "ousma" with your own profile folder name (check with: ls C:\Users).
+-->
+<syscheck>
+  <directories realtime="yes" check_all="yes" report_changes="yes">C:\Users\ousma\secret-docs</directories>
+</syscheck>
